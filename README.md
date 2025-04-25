@@ -12,6 +12,35 @@ An AI-powered tool that converts COBOL code to modern Java using LangGraph and G
 - Automatic error fixing
 - Saves generated Java code to files
 
+## Architecture
+
+### 1. Agentic Workflow via LangGraph
+LangGraph orchestrates a graph of specialized agents.
+
+**Enables:**
+- Dynamic flow control
+- Iterative revision loops
+- Tool/function invocation
+- Retry logic with feedback
+
+Each node = agent (e.g., converter, validator, fixer).
+
+Each edge = flow logic (success/failure path).
+
+### 2. Iterative Feedback & Revision Loop
+After initial conversion, Java code is compiled and validated.
+
+**If issues are found:**
+- Enters "Fix & Retry" loop (up to 7 times)
+- Fixer agent revises only faulty parts using contextual feedback
+- Mimics reflection + recursion for self-improving code generation
+
+### 3. Architectural Advantages
+- **Agentic Modularity** – Isolated, reusable components
+- **Self-Healing Workflow** – Auto-fixes code until successful
+- **Reflection-Driven Reasoning** – Uses compiler/runtime feedback for validation
+- **Extensible Design** – Easy to plug in tools like test generators or static analyzers
+
 ## Prerequisites
 
 - Python 3.8 or higher
