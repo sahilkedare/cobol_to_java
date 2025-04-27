@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 def is_valid_cobol_file(file_path: str) -> bool:
     """Check if the file has a valid COBOL extension."""
-    valid_extensions = {'.cbl', '.cob', '.cobol', '.cpy'}
+    valid_extensions = {'.cbl', '.cob', '.cobol', '.cpy', '.txt'}
     return os.path.splitext(file_path)[1].lower() in valid_extensions
 
 def save_java_code(java_code: str, cobol_file: str) -> str:
@@ -40,7 +40,7 @@ def save_java_code(java_code: str, cobol_file: str) -> str:
 def main():
     # Parse command line arguments
     parser = argparse.ArgumentParser(description='COBOL to Java Modernization Tool')
-    parser.add_argument('cobol_file', help='Path to the COBOL file (.cbl, .cob, .cobol, .cpy)')
+    parser.add_argument('cobol_file', help='Path to the COBOL file (.cbl, .cob, .cobol, .cpy, .txt)')
     parser.add_argument('--expected-java', help='Path to the expected Java file (optional)')
     args = parser.parse_args()
     
@@ -48,7 +48,7 @@ def main():
     
     # Validate COBOL file extension
     if not is_valid_cobol_file(args.cobol_file):
-        logger.error("Invalid file extension. Supported extensions are: .cbl, .cob, .cobol, .cpy")
+        logger.error("Invalid file extension. Supported extensions are: .cbl, .cob, .cobol, .cpy, .txt")
         return
     
     # Check if file exists

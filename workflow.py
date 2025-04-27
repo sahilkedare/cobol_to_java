@@ -68,8 +68,15 @@ def create_workflow() -> Graph:
         if state["expected_java"]:
             logger.info("Comparing with expected Java code...")
             try:
-                state["error"] = java_validator.compare_code(state["java_code"], state["expected_java"])
-                logger.info("Comparison completed")
+                comparison_result = java_validator.compare_code(state["java_code"], state["expected_java"])
+                # Only set error if the comparison shows actual differences
+                if not comparison_result.startswith("The code is logically equivalent"):
+                    state["error"] = comparison_result
+                    logger.warning(f"Code differences found: {comparison_result}")
+                else:
+                    state["error"] = ""  # Clear error if logically equivalent
+                    logger.info("Code is logically equivalent to expected output")
+                    print("\n✅ Generated Java code is logically equivalent to expected code!")
             except Exception as e:
                 state["error"] = f"Error comparing Java code: {str(e)}"
                 logger.error(f"Failed to compare Java code: {str(e)}")
@@ -80,10 +87,13 @@ def create_workflow() -> Graph:
         if state["iteration"] >= 7:  # Max 7 iterations
             logger.info("Maximum iterations reached")
             return False
-        if not state["error"]:  # No errors
-            logger.info("No errors found, stopping iteration")
+        if not state["error"]:  # No errors or differences
+            logger.info("No errors or differences found, stopping iteration")
             return False
-        logger.info("Continuing iteration due to errors")
+        if state["expected_java"] and state["error"].startswith("The code is logically equivalent"):
+            logger.info("Code is logically equivalent to expected output, stopping iteration")
+            return False
+        logger.info("Continuing iteration due to errors or differences")
         return True
     
     # Create the workflow

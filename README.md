@@ -74,65 +74,29 @@ pip install -r requirements.txt
 GEMINI_API_KEY=your_api_key_here
 ```
 
-## Usage
+## Usage Guide
 
-Basic usage:
+### Command Syntax
 ```bash
 python main.py <cobol_file> [--expected-java <expected_java_file>]
 ```
 
-Example:
-```bash
-python main.py sample.cbl --expected-java expected.java
-```
-
 ### Arguments
+- `cobol_file`: Path to the COBOL source file (supports .cbl, .cob, .cobol, .cpy, or .txt extensions)
+- `--expected-java`: (Optional) Path to the expected Java output file for comparison
 
-- `cobol_file`: Path to the COBOL file to convert
-- `--expected-java`: (Optional) Path to the expected Java file for comparison
+### Example Usage
+```bash
+# Basic conversion
+python main.py sample.cbl
+
+# Conversion with expected output comparison
+python main.py sample.cbl --expected-java expected.java
+
+# Using a text file containing COBOL code
+python main.py cobol_code.txt
+```
 
 ### Output
 
-- Generated Java code is saved in the `generated_java` directory
-- The output filename matches the input COBOL filename with a `.java` extension
-- Logs are displayed in the console showing the conversion progress
-
-## Project Structure
-
-```
-.
-├── main.py              # Main application entry point
-├── cobol_processor.py   # COBOL to Java conversion logic
-├── java_validator.py    # Java code validation and comparison
-├── workflow.py          # LangGraph workflow definition
-├── requirements.txt     # Python dependencies
-├── .env                 # Environment variables (not in git)
-└── generated_java/      # Output directory for generated Java files
-```
-
-## Error Handling
-
-The tool includes comprehensive error handling:
-- Validates COBOL file extensions
-- Checks for file existence
-- Handles compilation errors
-- Provides detailed error messages
-- Attempts to fix errors automatically
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Uses Google's Gemini AI for code generation
-- Built with LangGraph for workflow management
-- Inspired by the need to modernize legacy COBOL systems 
+- Generated Java code is saved in the `

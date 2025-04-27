@@ -1,33 +1,24 @@
-public class Generated {
+import java.util.Scanner;
+
+public class SalaryCalculatorApp {
 
     public static void main(String[] args) {
-        String employeeName;
-        double basicSalary, bonus, grossSalary, avgSalary;
-        double[] salaryTable = new double[5];
-        double totalSalary = 0;
+        Scanner inputScanner = new Scanner(System.in);
 
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        System.out.print("Enter Name of Employee: ");
+        String empName = inputScanner.nextLine();
 
-        System.out.print("Enter Employee Name: ");
-        employeeName = scanner.nextLine();
+        System.out.print("Enter Basic Pay: ");
+        double basicPay = inputScanner.nextDouble();
 
-        System.out.print("Enter Basic Salary: ");
-        basicSalary = scanner.nextDouble();
+        System.out.print("Enter Bonus Pay: ");
+        double bonusPay = inputScanner.nextDouble();
 
-        System.out.print("Enter Bonus: ");
-        bonus = scanner.nextDouble();
+        double totalSalary = basicPay + bonusPay;
 
-        grossSalary = basicSalary + bonus;
-        System.out.println("Gross Salary is: " + grossSalary);
+        System.out.println("\nEmployee: " + empName);
+        System.out.println("Total Salary: " + totalSalary);
 
-        for (int i = 0; i < 5; i++) {
-            salaryTable[i] = grossSalary;
-            totalSalary += salaryTable[i];
-        }
-
-        avgSalary = totalSalary / 5;
-        System.out.println("Average Salary over 5 months is: " + avgSalary);
-
-        scanner.close();
+        inputScanner.close();
     }
 }
