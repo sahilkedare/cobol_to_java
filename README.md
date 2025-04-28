@@ -15,6 +15,7 @@ An AI-powered tool that converts COBOL and EASYTRIEVE code to modern Java using 
 - Automatic error fixing
 - Saves generated Java code to files
 - **LangSmith Tracing** - Monitors and traces the entire conversion workflow
+- **Web Interface** - Beautiful Streamlit UI for easy interaction
 
 ## Architecture
 
@@ -86,16 +87,34 @@ LANGSMITH_ENDPOINT=https://api.smith.langchain.com
 
 ## Usage Guide
 
-### Command Syntax
+### Web Interface (Streamlit)
+
+The easiest way to use the tool is through the Streamlit web interface:
+
+```bash
+# Run the Streamlit app
+streamlit run app.py
+```
+
+The web interface provides:
+- File upload for COBOL/EASYTRIEVE code
+- Optional upload of expected Java output
+- Real-time conversion status
+- Side-by-side view of input and generated code
+- Beautiful, centered UI for better readability
+
+### Command Line Interface
+
+#### Command Syntax
 ```bash
 python main.py <input_file> [--expected-java <expected_java_file>]
 ```
 
-### Arguments
+#### Arguments
 - `input_file`: Path to the input file (supports COBOL and EASYTRIEVE extensions)
 - `--expected-java`: (Optional) Path to the expected Java output file for comparison
 
-### Example Usage
+#### Example Usage
 ```bash
 # COBOL conversion
 python main.py program.cbl
