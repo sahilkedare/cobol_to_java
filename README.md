@@ -18,6 +18,9 @@ An AI-powered tool that converts COBOL and EASYTRIEVE code to modern Java using 
 - **Web Interface** - Beautiful Streamlit UI for easy interaction
 
 ## Architecture
+<p>
+  <img src="flowchart.png" alt="Conversion Workflow" width="300" heignt="500"/>
+</p>
 
 ### 1. Agentic Workflow via LangGraph
 LangGraph orchestrates a graph of specialized agents.
